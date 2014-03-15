@@ -1,9 +1,12 @@
 package hello;
 
+import java.util.*;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
 
 import persistence.MonetaryAmount;
 
@@ -34,6 +37,12 @@ public class Message {
 			@Column(name = "INITIAL_PRICE"),
 			@Column(name = "INITIAL_PRICE_CURRENCY", length = 3) })
 	private MonetaryAmount initialPrice;
+	
+	
+	@ElementCollection
+    @CollectionTable(	name = "ITEM_IMAGE", 	joinColumns = @JoinColumn(name = "MESSAGE_ID"))
+	@Column(name = "FILENAME", nullable = false)
+	private Set<String> images = new HashSet<String>();
 
 	private Message() {
 	}
@@ -84,5 +93,20 @@ public class Message {
 	}
 	public void setAddress(Address address) {
 	        this.home_Address = address;
+	}
+
+
+
+	public Set<String> getImages() {
+		return images;
+	}
+
+	public void addImage(String image) {
+		if (image == null)
+            throw new IllegalArgumentException("Can't add a null image.");
+		getImages().add(image);
+      
 	}	
+	
+	
 }

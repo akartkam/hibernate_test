@@ -37,6 +37,11 @@ public class HelloWorld {
         MonetaryAmount monetaryAmount = new MonetaryAmount(new BigDecimal(1000), Currency.getInstance("RUB"));
         message.setInitialPrice(monetaryAmount);
         
+        message.addImage("imag1");
+        message.addImage("imag2");
+        message.addImage("imag3");
+        
+        session.save(message);
         
         tx.commit();
         session.close();
@@ -69,12 +74,13 @@ public class HelloWorld {
 
         // message.getId() holds the identifier value of the first message
         Message loadedMessage = (Message) thirdSession.get( Message.class, message.getId());
+        message = new Message("Take me to your leader (please)");
+        message.addImage("imag1.2");
+        message.addImage("imag2.2");
+        message.addImage("imag3.2");        
 
         loadedMessage.setText("Greetings Earthling");
-        loadedMessage.setNextMessage(
-            new Message("Take me to your leader (please)")
-
-        );
+        loadedMessage.setNextMessage(message);
         
         //loadedMessage.setInitialPrice(new MonetaryAmount(new BigDecimal(1000), Currency.getInstance("EUR")));
         		
