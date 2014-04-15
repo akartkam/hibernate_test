@@ -41,8 +41,9 @@ public class Message {
 	
 	@ElementCollection
     @CollectionTable(	name = "ITEM_IMAGE", 	joinColumns = @JoinColumn(name = "MESSAGE_ID"))
+	@OrderColumn(name="orders_index")
 	@Column(name = "FILENAME", nullable = false)
-	private Set<String> images = new HashSet<String>();
+	private List<String> images = new ArrayList<String>();
 
 	private Message() {
 	}
@@ -97,7 +98,7 @@ public class Message {
 
 
 
-	public Set<String> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 

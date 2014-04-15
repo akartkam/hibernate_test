@@ -108,6 +108,9 @@ public class HelloWorld {
         for ( Iterator<Message> iter = messages.iterator(); iter.hasNext(); ) {
             Message loadedMsg = iter.next();
             System.out.println( loadedMsg.getText() );
+            for (String im:loadedMsg.getImages()) {
+            	System.out.println(im);	
+            }
         }
 
         fourthTransaction.commit();
