@@ -41,7 +41,21 @@ public class HelloWorld {
         message.addImage("imag2");
         message.addImage("imag3");
         
+        
+        Item item = new Item("Item1");
+        session.save(item);
+        
+        Bid bid = new Bid(item);
+        item.addBid(bid);
+        session.save(bid);
+        
+        bid = new Bid(item);
+        item.addBid(bid);
+        session.save(bid);
+        
         session.save(message);
+
+        
         
         tx.commit();
         session.close();

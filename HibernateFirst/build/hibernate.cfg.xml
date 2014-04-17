@@ -21,5 +21,7 @@
    <mapping class="hello.Message"/>
    <mapping class="hello.CreditCard"/>
    <mapping class="hello.BankAccount"/>
+   <mapping class="hello.Item"/>
+   <mapping class="hello.Bid"/>
  </session-factory>
 </hibernate-configuration>
