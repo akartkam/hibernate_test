@@ -3,7 +3,7 @@
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory>
-  <property name="hibernate.hbm2ddl.auto">create</property>
+  <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="hibernate.default_schema">MKYONGDB</property>
   <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
   <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost</property>
