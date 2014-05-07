@@ -1,0 +1,10 @@
+/*C2*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C3*/SET SCHEMA PUBLIC
+\u000a    drop table MKYONGDB.CE_ITEM_IMAGE if exists
+\u000a    drop table MKYONGDB.CE_BANKACCOUNT if exists
+\u000a    drop table MKYONGDB.CE_BID if exists
+\u000a    drop table MKYONGDB.CE_CREDITCARD if exists
+\u000a    drop table MKYONGDB.CE_ITEM if exists
+\u000a    drop table MKYONGDB.CE_MESSAGES if exists
+DISCONNECT
