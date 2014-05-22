@@ -104,7 +104,7 @@ public class HelloWorld {
         Session thirdSession = HibernateUtil.getSessionFactory().openSession();
         Transaction thirdTransaction = thirdSession.beginTransaction();
         
-        Item anItem = (Item) thirdSession.createQuery("from Item i where i.name = 'Item100'").uniqueResult();
+        Item anItem = (Item) thirdSession.createQuery("top 1 from Item i where i.name = 'Item101'").uniqueResult();
         thirdSession.delete(anItem);
 //
 //        // message.getId() holds the identifier value of the first message
