@@ -23,5 +23,6 @@
    <mapping class="hello.BankAccount"/>
    <mapping class="hello.Item"/>
    <mapping class="hello.Bid"/>
+   <mapping class="hello.User"/>
  </session-factory>
 </hibernate-configuration>

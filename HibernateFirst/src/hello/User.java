@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,7 +34,12 @@ public class User implements Serializable {
     @Column(name = "PSWD")
     private String password;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    //cascade = CascadeType.ALL,
+    @ManyToMany
+    @JoinTable(
+        name="USER_BID",
+        joinColumns={@JoinColumn(name="USER_ID")},
+        inverseJoinColumns={@JoinColumn(name="BID_ID")})
     private List<Bid> bids = new ArrayList<Bid>();
 
 
@@ -73,7 +80,15 @@ public class User implements Serializable {
 		this.password = password;
 	}
     
-    
+    public void addBid(Bid bid) {
+        if (bid == null)
+            throw new IllegalArgumentException("Can't add a null Bid.");
+        
+        bid.setUser(this);
+        this.getBids().add(bid);
+       
+        // Don't have to set the "other" side, a Bid can only be instantiated with a given item
+    }
 	
 
 }

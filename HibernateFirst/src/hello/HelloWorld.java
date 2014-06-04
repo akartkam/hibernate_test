@@ -44,17 +44,25 @@ public class HelloWorld {
         
         Item item = new Item("Item101");
 
+       User user = new User("User1","password1");
         
         Bid bid = new Bid(item);
         item.addBid(bid);
-        //session.save(bid);
+        session.save(bid);
+        
+        user.addBid(bid);
+        
         
         bid = new Bid(item);
         item.addBid(bid);
-        //session.save(bid);
+        session.save(bid);
         
-        session.save(item);
-
+        user.addBid(bid);
+        
+       session.save(item);       
+       session.save(user);
+        
+        
 //        session.save(message);
 
         
@@ -82,19 +90,23 @@ public class HelloWorld {
         @SuppressWarnings("unchecked")
         List<Item> items = 
               secondSession.createQuery("from Item i order by i.name asc").list();
+        @SuppressWarnings("unchecked")
+        List<User> users = 
+              secondSession.createQuery("from User u order by u.username asc").list();	
         
         System.out.println( items.size() + " items(s) found:" );
+        System.out.println( users.size() + " users(s) found:" );
 
-        for (Iterator<Item> iter = items.iterator(); iter.hasNext(); ) {
-        	 Item loadedItm = iter.next();
-             System.out.println(loadedItm +" / "+ loadedItm.getName());
-             System.out.println("===============Bids===============");
-             List<Bid> bids = loadedItm.getBids();
-             for (Iterator<Bid> iter1 = bids.iterator(); iter1.hasNext(); ) {
-            	 Bid loadedBid = iter1.next();
-                 System.out.println(loadedBid + " / " + loadedItm.getName());	 
-             }
-        }       
+//        for (Iterator<Item> iter = items.iterator(); iter.hasNext(); ) {
+//        	 Item loadedItm = iter.next();
+//             System.out.println(loadedItm +" / "+ loadedItm.getName());
+//             System.out.println("===============Bids===============");
+//             List<Bid> bids = loadedItm.getBids();
+//             for (Iterator<Bid> iter1 = bids.iterator(); iter1.hasNext(); ) {
+//            	 Bid loadedBid = iter1.next();
+//                 System.out.println(loadedBid + " / " + loadedItm.getName());	 
+//             }
+//        }       
         secondTransaction.commit();
         secondSession.close();
 
@@ -103,8 +115,15 @@ public class HelloWorld {
 //        // Third unit of work
         Session thirdSession = HibernateUtil.getSessionFactory().openSession();
         Transaction thirdTransaction = thirdSession.beginTransaction();
+
+        users = thirdSession.createQuery("from User u order by u.username asc").list();	
+        System.out.println(users);
         
-        Item anItem = (Item) thirdSession.createQuery("top 1 from Item i where i.name = 'Item101'").uniqueResult();
+        Query qr = thirdSession.createQuery("from Item i where i.name = 'Item101'");
+        qr.setMaxResults(1);
+        Item anItem = (Item) qr.uniqueResult();
+        
+        System.out.println(anItem);
         thirdSession.delete(anItem);
 //
 //        // message.getId() holds the identifier value of the first message

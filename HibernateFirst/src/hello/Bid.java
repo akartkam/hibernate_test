@@ -34,6 +34,17 @@ public class Bid implements Serializable, Comparable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ITEM_ID")
 	private Item item;
+	@ManyToOne//(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private User user;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Column(name = "CREATE_DATE")
 	private Date created = new Date();
 
