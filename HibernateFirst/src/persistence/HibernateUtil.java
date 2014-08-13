@@ -19,7 +19,7 @@ public class HibernateUtil {
     try {
     	//sessionFactory = new Configuration().configure().buildSessionFactory();  
     	Configuration configuration = new Configuration();
-    	configuration.setNamingStrategy( new CENamingStrategy() );
+    	//configuration.setNamingStrategy( new CENamingStrategy() );
         configuration.configure();
         ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().
         		  applySettings(configuration.getProperties()).buildServiceRegistry();        

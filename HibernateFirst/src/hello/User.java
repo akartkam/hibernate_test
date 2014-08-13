@@ -10,12 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER", schema = "MKYONGDB")
+@Table(name = "USER")
 public class User implements Serializable {
 
 	/**
@@ -42,9 +45,23 @@ public class User implements Serializable {
         inverseJoinColumns={@JoinColumn(name="BID_ID")})
     private List<Bid> bids = new ArrayList<Bid>();
 
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private AddressEntity shippingAddress;
 
+    public AddressEntity getShippingAddress() {
+		return shippingAddress;
+	}
 
-    /**
+	public void setShippingAddress(AddressEntity shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	/**
      * No-arg constructor for JavaBean tools.
      */
     public User() {}

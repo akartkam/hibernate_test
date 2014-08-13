@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 //@AttributeOverride(name = "owner", column = @Column(name = "CC_OWNER", nullable = false))
-@Table(name = "CREDITCARD", schema = "MKYONGDB")
+@Table(name = "CREDITCARD")
 public class CreditCard extends BillingDetails {
 /*	@Id
 	@GeneratedValue

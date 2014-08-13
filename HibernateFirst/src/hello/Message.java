@@ -14,7 +14,7 @@ import persistence.MonetaryAmount;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "MESSAGES",schema = "MKYONGDB")
+@Table(name = "MESSAGES")
 public class Message {
 	@Id
 	@GeneratedValue
@@ -30,7 +30,7 @@ public class Message {
 	private Message nextMessage;
 	
 	@Embedded //For value type object
-	private Address home_Address;
+	private AddressEmbded home_Address;
 	
 	@org.hibernate.annotations.Type(type = "persistence.MonetaryAmountSimpleUserType")
 	@org.hibernate.annotations.Columns(columns = {
@@ -89,10 +89,10 @@ public class Message {
 		this.nextMessage = nextMessage;
 	}
 	
-	public Address getAddress() {
+	public AddressEmbded getAddress() {
 	        return home_Address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(AddressEmbded address) {
 	        this.home_Address = address;
 	}
 

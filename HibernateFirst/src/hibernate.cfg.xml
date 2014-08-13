@@ -4,7 +4,7 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.hbm2ddl.auto">update</property>
-  <property name="hibernate.default_schema">MKYONGDB</property>
+ <!--   <property name="hibernate.default_schema">MKYONGDB</property> -->
   <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
   <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost</property>
   <property name="hibernate.connection.username">sa</property>
@@ -23,5 +23,7 @@
    <mapping class="hello.BankAccount"/>
    <mapping class="hello.Item"/>
    <mapping class="hello.Bid"/>
+   <mapping class="hello.User"/>
+   <mapping class="hello.AddressEntity"/>
  </session-factory>
 </hibernate-configuration>

@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
  * @author Christian Bauer
  */
 @Entity
-@Table(name = "ITEM", schema = "MKYONGDB")
+@Table(name = "ITEM")
 public class Item implements Serializable, Comparable {
 
 	@Id

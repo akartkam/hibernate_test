@@ -25,7 +25,7 @@ import javax.persistence.Table;
  * @author Christian Bauer
  */
 @Entity
-@Table(name = "BID", schema = "MKYONGDB")
+@Table(name = "BID")
 public class Bid implements Serializable, Comparable {
 	@Id
 	@GeneratedValue

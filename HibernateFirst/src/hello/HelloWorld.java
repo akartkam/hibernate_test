@@ -59,6 +59,12 @@ public class HelloWorld {
         
         user.addBid(bid);
         
+        AddressEntity addressEntity = new AddressEntity("Mendeleeva", "603011", "N.Novgorod");
+        addressEntity.setUser(user);
+        session.save(addressEntity);
+        
+        user.setShippingAddress(addressEntity);
+        
        session.save(item);       
        session.save(user);
         
@@ -124,7 +130,7 @@ public class HelloWorld {
         Item anItem = (Item) qr.uniqueResult();
         
         System.out.println(anItem);
-        thirdSession.delete(anItem);
+//        thirdSession.delete(anItem);
 //
 //        // message.getId() holds the identifier value of the first message
 //        Message loadedMessage = (Message) thirdSession.get( Message.class, message.getId());

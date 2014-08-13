@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 //@AttributeOverride(name = "owner", column = @Column(name = "BA_OWNER", nullable = false))
-@Table(name = "BANKACCOUNT",schema = "MKYONGDB")
+@Table(name = "BANKACCOUNT")
 public class BankAccount extends BillingDetails {
 /*	@Id
 	@GeneratedValue

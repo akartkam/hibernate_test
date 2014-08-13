@@ -16,7 +16,7 @@ import javax.persistence.*;
  * @author Christian Bauer
  */
 @Embeddable
-public class Address implements Serializable {
+public class AddressEmbded implements Serializable {
 
 	@Column(name="STREET_NAME")
 	private String street;
@@ -28,12 +28,12 @@ public class Address implements Serializable {
 	/**
 	 * No-arg constructor for JavaBean tools
 	 */
-	public Address() {}
+	public AddressEmbded() {}
 
 	/**
 	 * Full constructor
 	 */
-	public Address(String street, String zipcode, String city) {
+	public AddressEmbded(String street, String zipcode, String city) {
 		this.street = street;
 		this.zipcode = zipcode;
 		this.city = city;
@@ -54,9 +54,9 @@ public class Address implements Serializable {
 
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Address)) return false;
+		if (!(o instanceof AddressEmbded)) return false;
 
-		final Address address = (Address) o;
+		final AddressEmbded address = (AddressEmbded) o;
 
 		if (!city.equals(address.city)) return false;
 		if (!street.equals(address.street)) return false;
