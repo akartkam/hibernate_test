@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity
 //@AttributeOverride(name = "owner", column = @Column(name = "CC_OWNER", nullable = false))
 @Table(name = "CREDITCARD")
+//@DiscriminatorValue("CREDITCARD")
 public class CreditCard extends BillingDetails {
-/*	@Id
+	/*@Id
 	@GeneratedValue
 	@Column(name = "CREDIT_CARD_ID")
 	private Long id = null;*/

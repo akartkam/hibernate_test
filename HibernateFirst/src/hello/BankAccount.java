@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Entity
 //@AttributeOverride(name = "owner", column = @Column(name = "BA_OWNER", nullable = false))
 @Table(name = "BANKACCOUNT")
+//@DiscriminatorValue("BANKACCOUNT")
 public class BankAccount extends BillingDetails {
-/*	@Id
+	/*@Id
 	@GeneratedValue
 	@Column(name = "BANK_ACCOUNT_ID")
 	private Long id = null;*/

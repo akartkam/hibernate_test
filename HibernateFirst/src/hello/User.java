@@ -16,9 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User implements Serializable {
 
 	/**
@@ -29,7 +30,9 @@ public class User implements Serializable {
 	@GeneratedValue
 	@Column(name = "USER_ID")
 	private Long id = null;
-    private int version = 1;
+	@Version
+	@Column(name = "VERS")
+    private int version;
 
     @Column(name = "USERNAME")
     private String username;
@@ -37,26 +40,18 @@ public class User implements Serializable {
     @Column(name = "PSWD")
     private String password;
     
-    //cascade = CascadeType.ALL,
-    @ManyToMany
-    @JoinTable(
-        name="USER_BID",
-        joinColumns={@JoinColumn(name="USER_ID")},
-        inverseJoinColumns={@JoinColumn(name="BID_ID")})
-    private List<Bid> bids = new ArrayList<Bid>();
-
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    private AddressEntity shippingAddress;
-
-    public AddressEntity getShippingAddress() {
-		return shippingAddress;
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+	private BillingDetails defaultBillingDetails;
+	
+    public BillingDetails getDefaultBillingDetails() {
+		return defaultBillingDetails;
 	}
 
-	public void setShippingAddress(AddressEntity shippingAddress) {
-		this.shippingAddress = shippingAddress;
+	public void setDefaultBillingDetails(BillingDetails defaultBillingDetails) {
+		this.defaultBillingDetails = defaultBillingDetails;
 	}
 
+   
 	public int getVersion() {
 		return version;
 	}
@@ -71,8 +66,6 @@ public class User implements Serializable {
     	this.password = password;
     }
     
-    public List<Bid> getBids() { return bids; }
-
 	public Long getId() {
 		return id;
 	}
@@ -96,16 +89,5 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
-    public void addBid(Bid bid) {
-        if (bid == null)
-            throw new IllegalArgumentException("Can't add a null Bid.");
-        
-        bid.setUser(this);
-        this.getBids().add(bid);
-       
-        // Don't have to set the "other" side, a Bid can only be instantiated with a given item
-    }
-	
 
 }
